@@ -1,5 +1,5 @@
 ###########################################
-# Author: CIPH3R
+# Author: Aravind Potluri
 # Description:  Basic python UDP Client that
 #               sends user I/P to server
 #               and recevies the response.           
