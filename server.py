@@ -24,7 +24,6 @@ except:
 try:
     sock.bind((serverIP, serverPORT))	
     print(f"[+] socket successfully binded on port {serverPORT}")
-    print("[+] wating for connection...\n")
 except:
     print(f"[-] Socket binding failed")	
     sock.close()
@@ -33,6 +32,7 @@ except:
 # Establishing the connection
 while True:
     try:
+        print("\n[+] wating for connection...")
         # Receive data from any client
         data, clientAddress = sock.recvfrom(1024) # Assuming MAX data to be received is 1024 Bytes.
         msg = data.decode('UTF-8')
@@ -43,6 +43,7 @@ while True:
 
         # Echoing back the captilized msg to client
         sock.sendto(msg.encode('UTF-8'), clientAddress)
+        print(f"[#] Response msg is sent: {msg}")
 
     except KeyboardInterrupt:
         print(" [!] Server shutting down.")
