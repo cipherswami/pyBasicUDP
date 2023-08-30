@@ -21,15 +21,19 @@ except:
     sock.close()
     exit()
 
-# Send the data
+# Sending the data
 while True:
     try:
         # Sending the user input to server
         sock.sendto(input("\n[#] Enter the msg: ").encode('UTF-8'), (serverIP, serverPORT))
 
         # Receive the response from server
-        data, serverAddress = sock.recvfrom(1024) # Assuming MAX data to be received is 1024 Bytes.
-        print(f"[#] Response from server: {data.decode('UTF-8')}")
+        try:
+            sock.settimeout(5) # Time out, if the connection cant be established.
+            data, serverAddress = sock.recvfrom(1024) # Assuming MAX data to be received is 1024 Bytes.
+            print(f"[#] Response from server: {data.decode('UTF-8')}")
+        except TimeoutError:
+            print("[-] No Response from server, check the connections !")
 
     except KeyboardInterrupt:
         print(" [!] Client shutting down.")
