@@ -1,15 +1,14 @@
-###########################################
-# Author: Aravind Potluri
-# Description:  Basic python UDP Client that
-#               sends user I/P to server
-#               and recevies the response.           
-########################################### 
+############################################################
+# Author:       Aravind Potluri <aravindswami135@gmail.com>
+# Description:  Basic python UDP Client that sends user I/P
+#               to server and recevies the response.           
+############################################################ 
 
 # Macros
-serverIP = "127.0.0.1"
-serverPORT = 8080
+serverIP = "127.0.0.1"  # Target node's IP Address.
+serverPORT = 8080       # Target node's Port.
 
-# Importing Libraries
+# Libraries
 import socket
 
 # Creating socket
@@ -36,11 +35,11 @@ while True:
             print("[-] No Response from server, check the connections !")
 
     except KeyboardInterrupt:
-        print(" [!] Client shutting down.")
+        print("\n[!] Client shutting down.")
         break
 
     except Exception as err:
-        print(f"An error occurred: {str(err)}")
+        print(f"[!] ERROR: {str(err)}")
         break
 
 # Close the server socket

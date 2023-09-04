@@ -1,14 +1,14 @@
-###########################################
-# Author: Aravind Potluri
-# Description:  Basic python UDP Server that
-#               echos back captilized text.           
-########################################### 
+############################################################
+# Author:       Aravind Potluri <aravindswami135@gmail.com>
+# Description:  Basic python UDP Server that echos back the
+#               captilized text.        
+############################################################ 
 
 # Macros
 serverIP = "0.0.0.0"    # Accept from any IP.
-serverPORT = 8080       # Server Port   
+serverPORT = 8080       # Server Port. 
 
-# Importing Libraries
+# Libraries
 import socket
 
 # Creating socket
@@ -20,7 +20,7 @@ except:
     sock.close()
     exit()
 
-# Binding socket and listening for connection
+# Binding the socket
 try:
     sock.bind((serverIP, serverPORT))	
     print(f"[+] socket successfully binded on port {serverPORT}")
@@ -29,28 +29,28 @@ except:
     sock.close()
     exit()
 
-# Establishing the connection
+# Waiting for connections
 while True:
     try:
         print("\n[+] wating for connection...")
         # Receive data from any client
         data, clientAddress = sock.recvfrom(1024) # Assuming MAX data to be received is 1024 Bytes.
         msg = data.decode('UTF-8')
-        print(f"[#] Received message from {clientAddress}: {msg}")
+        print(f"[#] Received message from {clientAddress[0]} : {msg}")
 
         # Data processing
         msg = msg.upper()
 
         # Echoing back the captilized msg to client
         sock.sendto(msg.encode('UTF-8'), clientAddress)
-        print(f"[#] Response msg is sent: {msg}")
+        print(f"[#] Sent Response: {msg}")
 
     except KeyboardInterrupt:
-        print(" [!] Server shutting down.")
+        print("\n[!] Server shutting down.")
         break
 
     except Exception as err:
-        print(f"An error occurred: {str(err)}")
+        print(f"[!] ERROR: {str(err)}")
         break
 
 # Close the server socket
